@@ -21,6 +21,17 @@ export const userRegistration = async (req, res, next) => {
     next(error);
   }
 };
+export const userLogin = async (req, res, next) => {
+  try {
+    const data = await UserService.userLoginCredentials(req.body);
+    res.status(HttpStatus.OK).json({
+      code: HttpStatus.OK,
+      data: data
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 

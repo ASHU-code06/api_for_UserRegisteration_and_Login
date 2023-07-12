@@ -11,7 +11,15 @@ export const newUser = async (body) => {
   const data = await User.create(body);
   return data;
 };
+//match password and email
+export const userLoginCredentials = async (body) =>{
+  const isPasswordMatch = await User.findOne({ where: { email: body.email,password: body.password } });
+  if(!isPasswordMatch){
+    throw new Error ("invalid password ");
+  }
+  return isPasswordMatch;
 
+};
 
 
 
